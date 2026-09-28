@@ -1,0 +1,43 @@
+tabela,atributo,dimensao,regra,tipo,total,fora_da_regra,pct,tratamento
+bronze_nvd,cve_id,completude,não nulo,violação,170006,0,0.0,—
+bronze_nvd,cve_id,conformidade,"segue o padrão ^CVE-[0-9]{4}-[0-9]{4,}$",violação,170006,0,0.0,—
+bronze_nvd,cve_id,unicidade,uma linha por CVE,violação,170006,0,0.0,R2: mantém a versão mais recente
+bronze_nvd,status_nvd,conformidade,status válido da API do NVD,violação,170006,0,0.0,—
+bronze_nvd,status_nvd,acurácia,CVE não rejeitada,violação,170006,7861,4.62,R3: excluída na prata
+bronze_nvd,status_nvd,atualidade,CVE já analisada pelo NVD (Analyzed/Modified),informativo,170006,25747,15.14,Mantida; explica parte das CVEs sem CVSS/CWE
+bronze_nvd,publicado_em / modificado_em,consistência,publicação anterior ou igual à última modificação,violação,170006,0,0.0,—
+bronze_nvd,cvss_score,completude,CVE com nota CVSS v3.x,informativo,170006,3102,1.82,"R6: faixa 'Sem CVSS', mantida"
+bronze_nvd,cvss_score,conformidade,entre 0 e 10,violação,170006,0,0.0,R5: vira nulo
+bronze_nvd,cvss_versao,conformidade,3.0 ou 3.1 quando presente,violação,170006,0,0.0,—
+bronze_nvd,cvss_score / cvss_severidade,consistência,severidade compatível com a nota (tabela oficial CVSS v3),violação,170006,0,0.0,R5: faixa recalculada a partir da nota
+bronze_nvd,cvss_fonte,consistência,nota atribuída pelo próprio NVD (nvd@nist.gov),informativo,170006,51371,30.22,R4: aceita a nota do fabricante (CNA) na falta da do NVD
+bronze_nvd,cvss_vetor_ataque,conformidade,"NETWORK, ADJACENT_NETWORK, LOCAL ou PHYSICAL",violação,170006,0,0.0,—
+bronze_nvd,cvss_complexidade,conformidade,LOW ou HIGH,violação,170006,0,0.0,—
+bronze_nvd,cvss_privilegios,conformidade,"NONE, LOW ou HIGH",violação,170006,0,0.0,—
+bronze_nvd,cvss_interacao,conformidade,NONE ou REQUIRED,violação,170006,0,0.0,—
+bronze_nvd,cwes,completude,ao menos uma CWE,informativo,170006,2465,1.45,R7: CWE principal 'SEM-CWE'
+prata_nvd,cwe_principal,acurácia,CWE específica (não genérica do NVD),informativo,162145,13496,8.32,Mantida como categoria própria em dim_cwe
+bronze_kev,cveID,completude,não nulo,violação,1728,0,0.0,—
+bronze_kev,cveID,conformidade,"segue o padrão ^CVE-[0-9]{4}-[0-9]{4,}$",violação,1728,0,0.0,—
+bronze_kev,cveID,unicidade,uma linha por CVE,violação,1728,0,0.0,dropDuplicates
+bronze_kev,vendorProject,completude,não nulo e não vazio,violação,1728,0,0.0,—
+bronze_kev,vendorProject,consistência,cada fornecedor com uma única grafia (ignorando maiúsculas/espaços),violação,1728,0,0.0,R1 aplica TRIM
+bronze_kev,product,completude,não nulo e não vazio,violação,1728,0,0.0,—
+bronze_kev,dateAdded,conformidade,data entre o lançamento do catálogo (2021-11-03) e a versão baixada,violação,1728,0,0.0,—
+bronze_kev,dateAdded / dueDate,consistência,prazo posterior à inclusão,violação,1728,0,0.0,—
+bronze_kev,knownRansomwareCampaignUse,conformidade,Known ou Unknown,violação,1728,0,0.0,R8
+bronze_kev,cwes,completude,ao menos uma CWE,informativo,1728,175,10.13,R7: 'SEM-CWE'
+prata_epss_atual,cve_id,conformidade,"segue o padrão ^CVE-[0-9]{4}-[0-9]{4,}$",violação,380224,0,0.0,—
+bronze_epss_atual,cve,unicidade,uma linha por CVE,violação,380224,0,0.0,dropDuplicates
+prata_epss_atual,epss,conformidade,"entre 0 e 1, não nulo",violação,380224,0,0.0,—
+prata_epss_atual,epss_percentil,conformidade,"entre 0 e 1, não nulo",violação,380224,0,0.0,—
+prata_epss_corte,epss,conformidade,"entre 0 e 1, não nulo",violação,271765,0,0.0,—
+fato_cve,sk_cwe,integridade,chave encontrada em dim_cwe,violação,162145,0,0.0,—
+fato_cve,sk_perfil_cvss,integridade,chave encontrada em dim_perfil_cvss,violação,162145,0,0.0,—
+fato_cve,epss,completude,CVE com EPSS atual,informativo,162145,0,0.0,Fica fora das políticas por EPSS
+fato_cve,epss_2025_01_01,completude,CVE publicada até 2024 com EPSS em 01/01/2025,informativo,162145,497,0.31,Tratada como EPSS = 0 no teste prospectivo
+fato_cve,dias_ate_kev,consistência,inclusão no KEV não anterior à publicação no NVD,informativo,162145,62,0.04,Mantida: a exploração pode ser anterior à publicação (zero-day)
+fato_kev,sk_produto,integridade,chave encontrada em dim_produto,violação,1728,0,0.0,—
+fato_kev,sk_cwe,integridade,chave encontrada em dim_cwe,violação,1728,0,0.0,—
+fato_kev,epss,completude,CVE do KEV com EPSS atual,informativo,1728,0,0.0,—
+fato_kev,cve_id,cobertura,CVE do KEV com identificador de 2021 a 2025 presente na população do NVD,informativo,1728,9,0.52,Publicada fora do recorte (ex.: ID reservado em um ano e publicado em outro)

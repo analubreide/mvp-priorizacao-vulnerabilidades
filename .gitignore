@@ -1,0 +1,7 @@
+# Tabelas intermediárias geradas localmente (reproduzíveis com scripts/pipeline_local.py)
+dados/processados/
+# Arquivo NVD descompactado e controle de retomada da coleta
+dados/brutos/nvd_cves.ndjson
+dados/brutos/*.progresso
+__pycache__/
+.ipynb_checkpoints/

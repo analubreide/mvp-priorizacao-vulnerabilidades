@@ -1,0 +1,12 @@
+metrica,categoria,cves,exploradas,taxa_exploracao_pct,razao
+Complexidade,HIGH,8586,50.0,0.582,1.07
+Complexidade,LOW,150457,817.0,0.543,1.0
+Interação do usuário,NONE,108121,666.0,0.616,1.13
+Interação do usuário,REQUIRED,50922,201.0,0.395,0.72
+Privilégios exigidos,NONE,84068,585.0,0.696,1.28
+Privilégios exigidos,HIGH,14811,62.0,0.419,0.77
+Privilégios exigidos,LOW,60164,220.0,0.366,0.67
+Vetor de ataque,LOCAL,38971,218.0,0.559,1.03
+Vetor de ataque,NETWORK,114946,635.0,0.552,1.01
+Vetor de ataque,ADJACENT_NETWORK,3785,11.0,0.291,0.53
+Vetor de ataque,PHYSICAL,1341,3.0,0.224,0.41

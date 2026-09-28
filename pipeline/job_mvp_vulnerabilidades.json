@@ -1,0 +1,77 @@
+{
+  "name": "mvp_priorizacao_vulnerabilidades",
+  "description": "Pipeline ETL do MVP: coleta -> bronze -> prata -> ouro -> qualidade -> análise",
+  "tasks": [
+    {
+      "task_key": "coleta",
+      "notebook_task": {
+        "notebook_path": "/Workspace/Users/SEU-EMAIL-DATABRICKS/mvp-priorizacao-vulnerabilidades/notebooks/01_coleta",
+        "source": "WORKSPACE",
+        "base_parameters": {
+          "modo": "repositorio"
+        }
+      }
+    },
+    {
+      "task_key": "bronze",
+      "depends_on": [
+        {
+          "task_key": "coleta"
+        }
+      ],
+      "notebook_task": {
+        "notebook_path": "/Workspace/Users/SEU-EMAIL-DATABRICKS/mvp-priorizacao-vulnerabilidades/notebooks/02_bronze",
+        "source": "WORKSPACE"
+      }
+    },
+    {
+      "task_key": "prata",
+      "depends_on": [
+        {
+          "task_key": "bronze"
+        }
+      ],
+      "notebook_task": {
+        "notebook_path": "/Workspace/Users/SEU-EMAIL-DATABRICKS/mvp-priorizacao-vulnerabilidades/notebooks/03_prata",
+        "source": "WORKSPACE"
+      }
+    },
+    {
+      "task_key": "ouro",
+      "depends_on": [
+        {
+          "task_key": "prata"
+        }
+      ],
+      "notebook_task": {
+        "notebook_path": "/Workspace/Users/SEU-EMAIL-DATABRICKS/mvp-priorizacao-vulnerabilidades/notebooks/04_ouro",
+        "source": "WORKSPACE"
+      }
+    },
+    {
+      "task_key": "qualidade",
+      "depends_on": [
+        {
+          "task_key": "ouro"
+        }
+      ],
+      "notebook_task": {
+        "notebook_path": "/Workspace/Users/SEU-EMAIL-DATABRICKS/mvp-priorizacao-vulnerabilidades/notebooks/05_qualidade",
+        "source": "WORKSPACE"
+      }
+    },
+    {
+      "task_key": "analise",
+      "depends_on": [
+        {
+          "task_key": "qualidade"
+        }
+      ],
+      "notebook_task": {
+        "notebook_path": "/Workspace/Users/SEU-EMAIL-DATABRICKS/mvp-priorizacao-vulnerabilidades/notebooks/06_analise",
+        "source": "WORKSPACE"
+      }
+    }
+  ],
+  "max_concurrent_runs": 1
+}

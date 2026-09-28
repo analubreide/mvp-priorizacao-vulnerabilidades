@@ -1,0 +1,7 @@
+politica,esforco,esforco_pct,capturadas,cobertura_pct,eficiencia_pct
+CVSS >= 9 (Crítica),22564,13.9,313.0,36.1,1.39
+"EPSS top-N, mesmo esforço de CVSS >= 9",22564,13.9,808.0,93.2,3.58
+CVSS >= 7 (Alta ou Crítica),82854,51.1,759.0,87.5,0.92
+"EPSS top-N, mesmo esforço de CVSS >= 7",82854,51.1,856.0,98.7,1.03
+"EPSS >= 0,10",4584,2.8,620.0,71.5,13.53
+"EPSS >= 0,01",35681,22.0,831.0,95.8,2.33

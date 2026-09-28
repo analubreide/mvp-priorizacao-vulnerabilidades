@@ -1,0 +1,46 @@
+MIT License — código deste repositório
+
+Copyright (c) 2026 Ana Luisa Breide Pessoa Guerra
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+-------------------------------------------------------------------------------
+Licenças dos dados versionados em dados/brutos/
+-------------------------------------------------------------------------------
+
+kev.json — CISA Known Exploited Vulnerabilities Catalog
+  Licença: Creative Commons Zero 1.0 (CC0 1.0), domínio público.
+  Permite redistribuição e uso derivado sem restrição.
+
+nvd_cves.ndjson.gz — extração da API CVE 2.0 do NIST National Vulnerability Database
+  Dados do governo dos EUA, sem proteção de direito autoral (domínio público).
+  Aviso exigido pelo NVD: "This product uses data from the NVD API but is not
+  endorsed or certified by the NVD."
+
+epss_scores-current.csv.gz e epss_scores-2025-01-01.csv.gz
+  FIRST — Exploit Prediction Scoring System (EPSS). Uso livre; o FIRST pede
+  atribuição: Jacobs, J.; Romanosky, S.; Edwards, B.; Roytman, M.; Adjerid, I.
+  "Exploit Prediction Scoring System (EPSS)". https://www.first.org/epss
+
+cwe_1000.csv.zip — MITRE Common Weakness Enumeration (CWE), visão 1000
+  © The MITRE Corporation. Os Termos de Uso do CWE concedem licença gratuita,
+  não exclusiva, para reproduzir e redistribuir, mantida esta atribuição.
+  https://cwe.mitre.org/about/termsofuse.html
+
+Nenhum dos conjuntos contém dados pessoais (ver seção de ética no README).

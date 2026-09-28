@@ -1,0 +1,7 @@
+faixa_tempo,cves,pct,pct_acumulado
+1. Antes da publicação no NVD,62,7.2,7.2
+2. 0 a 7 dias,259,29.9,37.0
+3. 8 a 30 dias,93,10.7,47.8
+4. 31 a 90 dias,110,12.7,60.4
+5. 91 a 365 dias,236,27.2,87.7
+6. Mais de 1 ano,107,12.3,100.0

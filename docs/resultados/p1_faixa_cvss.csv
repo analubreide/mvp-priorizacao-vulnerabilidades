@@ -1,0 +1,7 @@
+faixa_cvss,cves,pct_das_cves,exploradas,pct_das_exploradas,taxa_exploracao_pct
+Crítica,22564,13.9,313.0,36.1,1.387
+Alta,60290,37.2,446.0,51.4,0.74
+Média,72905,45.0,105.0,12.1,0.144
+Baixa,3282,2.0,3.0,0.3,0.091
+Nenhuma,2,0.0,0.0,0.0,0.0
+Sem CVSS,3102,1.9,0.0,0.0,0.0

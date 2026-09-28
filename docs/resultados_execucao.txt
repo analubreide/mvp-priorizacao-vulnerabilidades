@@ -1,0 +1,171 @@
+               tabela                      atributo      dimensao                                         regra         tipo   total  fora_da_regra    pct                                    tratamento
+0          bronze_nvd                        cve_id    completude                                      não nulo     violação  170006              0   0.00                                             —
+1          bronze_nvd                        cve_id  conformidade       segue o padrão ^CVE-[0-9]{4}-[0-9]{4,}$     violação  170006              0   0.00                                             —
+2          bronze_nvd                        cve_id     unicidade                             uma linha por CVE     violação  170006              0   0.00              R2: mantém a versão mais recente
+3          bronze_nvd                    status_nvd  conformidade                   status válido da API do NVD     violação  170006              0   0.00                                             —
+4          bronze_nvd                    status_nvd      acurácia                             CVE não rejeitada     violação  170006           7861   4.62                         R3: excluída na prata
+5          bronze_nvd                    status_nvd    atualidade  CVE já analisada pelo NVD (Analyzed/Modif...  informativo  170006          25747  15.14  Mantida; explica parte das CVEs sem CVSS/CWE
+6          bronze_nvd  publicado_em / modificado_em  consistência  publicação anterior ou igual à última mod...     violação  170006              0   0.00                                             —
+7          bronze_nvd                    cvss_score    completude                        CVE com nota CVSS v3.x  informativo  170006           3102   1.82                 R6: faixa 'Sem CVSS', mantida
+8          bronze_nvd                    cvss_score  conformidade                                  entre 0 e 10     violação  170006              0   0.00                                 R5: vira nulo
+9          bronze_nvd                   cvss_versao  conformidade                    3.0 ou 3.1 quando presente     violação  170006              0   0.00                                             —
+10         bronze_nvd  cvss_score / cvss_severidade  consistência  severidade compatível com a nota (tabela ...     violação  170006              0   0.00        R5: faixa recalculada a partir da nota
+11         bronze_nvd                    cvss_fonte  consistência  nota atribuída pelo próprio NVD (nvd@nist...  informativo  170006          51371  30.22  R4: aceita a nota do fabricante (CNA) na ...
+12         bronze_nvd             cvss_vetor_ataque  conformidade  NETWORK, ADJACENT_NETWORK, LOCAL ou PHYSICAL     violação  170006              0   0.00                                             —
+13         bronze_nvd             cvss_complexidade  conformidade                                   LOW ou HIGH     violação  170006              0   0.00                                             —
+14         bronze_nvd              cvss_privilegios  conformidade                             NONE, LOW ou HIGH     violação  170006              0   0.00                                             —
+15         bronze_nvd                cvss_interacao  conformidade                              NONE ou REQUIRED     violação  170006              0   0.00                                             —
+16         bronze_nvd                          cwes    completude                              ao menos uma CWE  informativo  170006           2465   1.45                   R7: CWE principal 'SEM-CWE'
+17          prata_nvd                 cwe_principal      acurácia          CWE específica (não genérica do NVD)  informativo  162145          13496   8.32     Mantida como categoria própria em dim_cwe
+18         bronze_kev                         cveID    completude                                      não nulo     violação    1728              0   0.00                                             —
+19         bronze_kev                         cveID  conformidade       segue o padrão ^CVE-[0-9]{4}-[0-9]{4,}$     violação    1728              0   0.00                                             —
+20         bronze_kev                         cveID     unicidade                             uma linha por CVE     violação    1728              0   0.00                                dropDuplicates
+21         bronze_kev                 vendorProject    completude                          não nulo e não vazio     violação    1728              0   0.00                                             —
+22         bronze_kev                 vendorProject  consistência  cada fornecedor com uma única grafia (ign...     violação    1728              0   0.00                                R1 aplica TRIM
+23         bronze_kev                       product    completude                          não nulo e não vazio     violação    1728              0   0.00                                             —
+24         bronze_kev                     dateAdded  conformidade  data entre o lançamento do catálogo (2021...     violação    1728              0   0.00                                             —
+25         bronze_kev           dateAdded / dueDate  consistência                    prazo posterior à inclusão     violação    1728              0   0.00                                             —
+26         bronze_kev    knownRansomwareCampaignUse  conformidade                              Known ou Unknown     violação    1728              0   0.00                                            R8
+27         bronze_kev                          cwes    completude                              ao menos uma CWE  informativo    1728            175  10.13                                 R7: 'SEM-CWE'
+28   prata_epss_atual                        cve_id  conformidade       segue o padrão ^CVE-[0-9]{4}-[0-9]{4,}$     violação  380224              0   0.00                                             —
+29  bronze_epss_atual                           cve     unicidade                             uma linha por CVE     violação  380224              0   0.00                                dropDuplicates
+30   prata_epss_atual                          epss  conformidade                         entre 0 e 1, não nulo     violação  380224              0   0.00                                             —
+31   prata_epss_atual                epss_percentil  conformidade                         entre 0 e 1, não nulo     violação  380224              0   0.00                                             —
+32   prata_epss_corte                          epss  conformidade                         entre 0 e 1, não nulo     violação  271765              0   0.00                                             —
+33           fato_cve                        sk_cwe   integridade                   chave encontrada em dim_cwe     violação  162145              0   0.00                                             —
+34           fato_cve                sk_perfil_cvss   integridade           chave encontrada em dim_perfil_cvss     violação  162145              0   0.00                                             —
+35           fato_cve                          epss    completude                            CVE com EPSS atual  informativo  162145              0   0.00              Fica fora das políticas por EPSS
+36           fato_cve               epss_2025_01_01    completude  CVE publicada até 2024 com EPSS em 01/01/...  informativo  162145            497   0.31    Tratada como EPSS = 0 no teste prospectivo
+37           fato_cve                  dias_ate_kev  consistência  inclusão no KEV não anterior à publicação...  informativo  162145             62   0.04  Mantida: a exploração pode ser anterior à...
+38           fato_kev                    sk_produto   integridade               chave encontrada em dim_produto     violação    1728              0   0.00                                             —
+39           fato_kev                        sk_cwe   integridade                   chave encontrada em dim_cwe     violação    1728              0   0.00                                             —
+40           fato_kev                          epss    completude                     CVE do KEV com EPSS atual  informativo    1728              0   0.00                                             —
+41           fato_kev                        cve_id     cobertura  CVE do KEV com identificador de 2021 a 20...  informativo    1728              9   0.52  Publicada fora do recorte (ex.: ID reserv...
+
+== resumo
+   cves_publicadas_2021_2025  exploradas_kev  taxa_exploracao_pct  sem_cvss  sem_epss  entradas_catalogo_kev
+0                     162145           867.0                0.535    3102.0       0.0                   1728
+
+== p1_faixa_cvss
+  faixa_cvss   cves  pct_das_cves  exploradas  pct_das_exploradas  taxa_exploracao_pct
+0    Crítica  22564          13.9       313.0                36.1                1.387
+1       Alta  60290          37.2       446.0                51.4                0.740
+2      Média  72905          45.0       105.0                12.1                0.144
+3      Baixa   3282           2.0         3.0                 0.3                0.091
+4    Nenhuma      2           0.0         0.0                 0.0                0.000
+5   Sem CVSS   3102           1.9         0.0                 0.0                0.000
+
+== p1_por_ano
+   ano_publicacao   cves  exploradas  taxa_exploracao_pct  pct_cvss_alta_ou_critica  pct_sem_cvss
+0            2021  20149       214.0                1.062                      55.7           0.0
+1            2022  25074       131.0                0.522                      57.4           0.0
+2            2023  28816       165.0                0.573                      54.1           0.0
+3            2024  39953       160.0                0.400                      48.3           0.8
+4            2025  48153       197.0                0.409                      46.4           5.7
+
+== p2_politicas_atual
+                                 politica  esforco  esforco_pct  capturadas  cobertura_pct  eficiencia_pct
+0                     CVSS >= 9 (Crítica)    22564         13.9       313.0           36.1            1.39
+1  EPSS top-N, mesmo esforço de CVSS >= 9    22564         13.9       808.0           93.2            3.58
+2             CVSS >= 7 (Alta ou Crítica)    82854         51.1       759.0           87.5            0.92
+3  EPSS top-N, mesmo esforço de CVSS >= 7    82854         51.1       856.0           98.7            1.03
+4                            EPSS >= 0,10     4584          2.8       620.0           71.5           13.53
+5                            EPSS >= 0,01    35681         22.0       831.0           95.8            2.33
+
+== p3_politicas_prospectivo
+                                 politica  esforco  esforco_pct  capturadas  exploradas_no_periodo  cobertura_pct  eficiencia_pct
+0                     CVSS >= 9 (Crítica)    16267         14.3        24.0                   72.0           33.3            0.15
+1  EPSS top-N, mesmo esforço de CVSS >= 9    16267         14.3        23.0                   72.0           31.9            0.14
+2             CVSS >= 7 (Alta ou Crítica)    59983         52.9        65.0                   72.0           90.3            0.11
+3  EPSS top-N, mesmo esforço de CVSS >= 7    59983         52.9        44.0                   72.0           61.1            0.07
+4                            EPSS >= 0,10     1033          0.9         8.0                   72.0           11.1            0.77
+5                            EPSS >= 0,01     4319          3.8        15.0                   72.0           20.8            0.35
+6                CVSS >= 7 e EPSS >= 0,01     3822          3.4        15.0                   72.0           20.8            0.39
+
+== p4_perfil_cvss
+                 metrica         categoria    cves  exploradas  taxa_exploracao_pct  razao
+0           Complexidade              HIGH    8586        50.0                0.582   1.07
+1           Complexidade               LOW  150457       817.0                0.543   1.00
+2   Interação do usuário              NONE  108121       666.0                0.616   1.13
+3   Interação do usuário          REQUIRED   50922       201.0                0.395   0.72
+4   Privilégios exigidos              NONE   84068       585.0                0.696   1.28
+5   Privilégios exigidos              HIGH   14811        62.0                0.419   0.77
+6   Privilégios exigidos               LOW   60164       220.0                0.366   0.67
+7        Vetor de ataque             LOCAL   38971       218.0                0.559   1.03
+8        Vetor de ataque           NETWORK  114946       635.0                0.552   1.01
+9        Vetor de ataque  ADJACENT_NETWORK    3785        11.0                0.291   0.53
+10       Vetor de ataque          PHYSICAL    1341         3.0                0.224   0.41
+
+== p4_cwe
+            cwe_id                                                                                    nome_cwe  cves  exploradas  pct_das_exploradas  taxa_exploracao_pct  razao
+0          CWE-787                                                                         Out-of-bounds Write  8518        78.0                 9.0                 0.92    1.7
+1          CWE-416                                                                              Use After Free  4049        62.0                 7.2                 1.53    2.9
+2   NVD-CWE-noinfo                                                               Informação insuficiente (NVD)  9605        62.0                 7.2                 0.65    1.2
+3           CWE-78  Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')  3131        59.0                 6.8                 1.88    3.5
+4           CWE-22              Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal')  4158        49.0                 5.7                 1.18    2.2
+5          CWE-502                                                           Deserialization of Untrusted Data  1661        38.0                 4.4                 2.29    4.3
+6           CWE-94                                   Improper Control of Generation of Code ('Code Injection')  1935        33.0                 3.8                 1.71    3.2
+7          CWE-306                                                Missing Authentication for Critical Function  1205        26.0                 3.0                 2.16    4.0
+8          CWE-843                               Access of Resource Using Incompatible Type ('Type Confusion')   419        25.0                 2.9                 5.97   11.2
+9          CWE-287                                                                     Improper Authentication  1597        22.0                 2.5                 1.38    2.6
+10          CWE-77         Improper Neutralization of Special Elements used in a Command ('Command Injection')  1999        21.0                 2.4                 1.05    2.0
+11          CWE-20                                                                   Improper Input Validation  3043        20.0                 2.3                 0.66    1.2
+
+== p5_fornecedores
+   fornecedor  entradas_kev  pct_do_catalogo  produtos_distintos  com_ransomware  pct_ransomware
+0   Microsoft           389             22.5                  71           117.0            30.1
+1       Cisco            99              5.7                  43             7.0             7.1
+2       Apple            94              5.4                   9             0.0             0.0
+3       Adobe            82              4.7                  13            11.0            13.4
+4      Google            75              4.3                  25             0.0             0.0
+5      Oracle            46              2.7                  17            13.0            28.3
+6      Apache            40              2.3                  21             8.0            20.0
+7      Ivanti            35              2.0                  14            12.0            34.3
+8       Linux            31              1.8                   1             2.0             6.5
+9    Fortinet            30              1.7                   9            14.0            46.7
+10     VMware            26              1.5                  14             9.0            34.6
+11     D-Link            26              1.5                  21             2.0             7.7
+
+== p5_produtos
+   fornecedor                           produto  entradas_kev  com_ransomware
+0   Microsoft                           Windows           174            49.0
+1       Apple                 Multiple Products            53             0.0
+2      Google                       Chromium V8            41             0.0
+3   Microsoft                 Internet Explorer            36             6.0
+4       Adobe                      Flash Player            33             5.0
+5       Linux                            Kernel            31             2.0
+6   Microsoft                            Office            29             3.0
+7   Microsoft                            Win32k            25            11.0
+8   Microsoft                   Exchange Server            17            13.0
+9     Synacor  Zimbra Collaboration Suite (ZCS)            17             5.0
+10      Adobe                        ColdFusion            16             3.0
+11      Cisco           IOS and IOS XE Software            14             0.0
+
+== p5_concentracao
+   fornecedores  pct_top5  pct_top10  fornecedores_com_uma_entrada  pct_ransomware_geral
+0           283      42.8       53.3                         145.0                  20.9
+
+== p6_faixas_tempo
+                     faixa_tempo  cves   pct  pct_acumulado
+0  1. Antes da publicação no NVD    62   7.2            7.2
+1                  2. 0 a 7 dias   259  29.9           37.0
+2                 3. 8 a 30 dias    93  10.7           47.8
+3                4. 31 a 90 dias   110  12.7           60.4
+4               5. 91 a 365 dias   236  27.2           87.7
+5               6. Mais de 1 ano   107  12.3          100.0
+
+== p6_por_ano
+   ano_publicacao  exploradas  mediana_dias  pct_ate_7_dias  pct_ate_30_dias
+0            2021         214         206.0             3.7              8.4
+1            2022         131          24.0            38.9             51.9
+2            2023         165           6.0            52.7             64.8
+3            2024         160          11.0            48.8             59.4
+4            2025         197           8.0            49.2             64.0
+
+== p6_prazo_cisa
+   mediana_prazo_dias  pct_prazo_ate_21_dias  minimo  maximo
+0                21.0                   95.5       1     184
+curva EPSS em 01/01/2025: 1.000 CVEs -> 11.1% | 10.000 -> 27.8%
+curva CVSS: 1.000 CVEs -> 1.4% | 10.000 -> 9.7%
+
+Gráficos gravados em C:\Users\lulub\Claude\mvp-priorizacao-vulnerabilidades\docs\figuras
