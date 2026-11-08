@@ -187,6 +187,10 @@ consultável dentro da plataforma:
 
 ![Catálogo de fato_cve no Unity Catalog](evidencias/05_catalogo_fato_cve.png)
 
+A partir dessas chaves, o próprio Unity Catalog desenha o diagrama entidade-relacionamento da tabela fato:
+
+![Diagrama ER de fato_cve gerado pelo Unity Catalog](evidencias/05b_diagrama_er_fato_cve.png)
+
 ---
 
 ## 5. Carga (pipeline ETL)
@@ -198,6 +202,8 @@ As seis etapas são encadeadas em um **Job do Databricks** (definição em
 `coleta → bronze → prata → ouro → qualidade → analise`. Cada tarefa só inicia se a anterior terminar
 com sucesso, e todas as tabelas são regravadas (`overwrite`) a cada execução, o que torna o pipeline
 **idempotente**: rodar de novo produz o mesmo resultado.
+
+A execução oficial ocorreu em 28/09/2026 em computação *serverless*: as seis tarefas terminaram com sucesso em **5 min 56 s** no total, e as contagens e respostas obtidas no Databricks coincidem exatamente com as da réplica local.
 
 ![Execução do job com as seis tarefas](evidencias/03_job_execucao.png)
 
@@ -307,6 +313,8 @@ EPSS**: o EPSS de hoje é calculado com informação acumulada depois da publica
 exploração observados (a própria entrada no KEV, relatos de ataque, código de exploração publicado).
 Em parte, ele "já sabe a resposta". Por isso a pergunta P3 refaz o teste sem olhar o futuro.
 
+![Evidência P2 no Databricks](evidencias/08_p2.png)
+
 ### P3 · Teste prospectivo: com a informação de 01/01/2025, qual critério antecipava as explorações seguintes?
 
 Desenho do teste: população de **113.394 CVEs** publicadas de 2021 a 2024 que **ainda não estavam** no
@@ -375,6 +383,8 @@ de falha** discrimina muito mais: *type confusion* (típica de motores JavaScrip
 desserialização, ausência de autenticação e injeção de comandos são exploradas de 3 a 11 vezes mais
 que a média. No outro extremo, **XSS é a CWE mais comum (16% das CVEs) e uma das menos exploradas**
 (0,12×). Uma política que pondere a CWE reduziria bastante o esforço desperdiçado.
+
+![Evidência P4 no Databricks](evidencias/10_p4.png)
 
 ### P5 · Quais fornecedores e produtos concentram as exploradas e o uso em ransomware?
 
